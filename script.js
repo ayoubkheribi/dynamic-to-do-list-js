@@ -9,7 +9,13 @@ const addButton = document.getElementById('add-task-btn');
 const taskInput = document.getElementById('task-input');
 const taskList = document.getElementById('task-list');
 
-function addTask() {
+function addTask(taskText, save = true) {
+
+   if (save) {
+        const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+        storedTasks.push(taskText);
+        localStorage.setItem('tasks', JSON.stringify(storedTasks));
+    }
   
   const taskText = taskInput.value.trim();
 
